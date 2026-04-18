@@ -4,7 +4,7 @@ students = []
 
 #define a class to represent a student
 class Student:
-    def __init__(self, name, age, student_id):
+    def set_data(self, name, age, student_id):
         self.name = name
         self.age = age
         self.student_id = student_id
@@ -20,7 +20,8 @@ def collect_info():
         name = input(f"Enter the name of {student_str}: ")
         age = int(input(f"Enter the age of {student_str}: "))
         student_id = i + 1
-        student = Student(name, age, student_id)
+        student = Student()
+        student.set_data(name, age, student_id)
         students.append(student)
 
 #function to display students in order
