@@ -1,10 +1,12 @@
 # define a class to calculate basic and advanced operations
 class calculate:
+    #add and minus
     def calculate_basic(self, x, y):
         plus = x + y
         minus = x - y
         return f"x + y = {plus}, x - y = {minus}"
 
+    #multiply and divide
     def calculate_advanced(self, x, y):
         times = x * y
         if y != 0:
@@ -13,13 +15,14 @@ class calculate:
             divide = "undefined"
         return f"x * y = {times}, x / y = {divide}"
     
+    #modulo
     def calculate_modulo(self, x, y):
         left = x % y
         return f"x % y = {left}"
 
 # functions to get arguments
 def getArgument():
-    x = input("Enter the value of x: ")
+    x = input("Enter the value: ")
     return int(x)
 
 # function to print results
