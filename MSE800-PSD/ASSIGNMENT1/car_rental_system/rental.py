@@ -23,4 +23,4 @@ class Rental:
             return 0
 
     def __str__(self):
-        return f"Rental {self.rental_id}: {self.car_id} by {self.customer} ({self.name}, {self.phone}) from {self.start_date} to {self.end_date}, Status: {self.status}, Fee: {self.fee}"
+        return f"RentalID: {self.rental_id}, carID: {self.car_id}, Customer: {self.customer}, Name: {self.name}, Phone: {self.phone}, Start Date: {self.start_date}, End Date: {self.end_date}, Status: {self.status}, Fee: {self.fee}"

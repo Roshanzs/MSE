@@ -51,7 +51,7 @@ class Customer(User):
             print("Car not available.")
             return
         from .rental import Rental
-        rental_id = None # 由数据库自增
+        rental_id = None 
         rental = Rental(rental_id, self.username, car_id, start_date, end_date, name, phone)
         db.add_rental(rental)
         print(f"Rental request submitted.")

@@ -10,7 +10,7 @@ class Database:
             init_db()
         return cls._instance
 
-    # 用户相关
+    # userassociated methods
     def add_user(self, username, password, role):
         conn = get_connection()
         c = conn.cursor()
@@ -28,7 +28,7 @@ class Database:
             return {'username': row[0], 'password': row[1], 'role': row[2]}
         return None
 
-    # 车辆相关
+    # carassociated methods
     def add_car(self, car):
         conn = get_connection()
         c = conn.cursor()
@@ -68,7 +68,7 @@ class Database:
         conn.close()
         return car
 
-    # 租赁相关
+    # rentalassociated methods
     def add_rental(self, rental):
         conn = get_connection()
         c = conn.cursor()

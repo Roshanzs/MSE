@@ -1,3 +1,10 @@
+
+
+from datetime import datetime, timedelta
+from car_rental_system.user_factory import UserFactory
+from car_rental_system.car import Car
+from car_rental_system.database import Database
+
 def register(username, password, role):
     db = Database()
     if db.get_user(username):
@@ -19,17 +26,12 @@ def login(username, password):
         print("Invalid credentials.")
         return None
 
-from datetime import datetime, timedelta
-from car_rental_system.user_factory import UserFactory
-from car_rental_system.car import Car
-from car_rental_system.database import Database
-
 def main_menu():
     print("\n==== Car Rental System ====")
-    print("1. 用户注册")
-    print("2. 用户登录")
-    print("3. 退出")
-    return input("请选择操作: ")
+    print("1. register")
+    print("2. login")
+    print("3. logout")
+    return input("please choose an option: ")
 
 def user_menu(user):
     if user.get_role() == "admin":
@@ -39,60 +41,60 @@ def user_menu(user):
 
 def admin_menu(admin):
     while True:
-        print("\n==== 管理员菜单 ====")
-        print("1. 添加车辆")
-        print("2. 更新车辆")
-        print("3. 删除车辆")
-        print("4. 审批租赁")
-        print("5. 查看所有车辆")
-        print("6. 登出")
-        choice = input("请选择操作: ")
+        print("\n==== Admin Menu ====")
+        print("1. Add Car")
+        print("2. Update Car")
+        print("3. Delete Car")
+        print("4. Approve Rental")
+        print("5. View All Cars")
+        print("6. Logout")
+        choice = input("please choose an option: ")
         if choice == "1":
             while True:
                 try:
-                    car_id = int(input("车辆ID: "))
+                    car_id = int(input("Car ID: "))
                     break
                 except ValueError:
-                    print("车辆ID必须为整数！")
-            make = input("品牌: ")
-            model = input("型号: ")
+                    print("Car ID must be an integer!")
+            make = input("Brand: ")
+            model = input("Model: ")
             while True:
                 try:
-                    year = int(input("年份: "))
+                    year = int(input("Year: "))
                     break
                 except ValueError:
-                    print("年份必须为整数！")
+                    print("Year must be an integer!")
             while True:
                 try:
-                    mileage = int(input("里程: "))
+                    mileage = int(input("Mileage: "))
                     break
                 except ValueError:
-                    print("里程必须为整数！")
+                    print("Mileage must be an integer!")
             while True:
-                yn = input("现在可用(y/n): ").lower()
+                yn = input("Available now (y/n): ").lower()
                 if yn in ['y', 'n']:
                     available_now = yn == 'y'
                     break
                 else:
-                    print("请输入y或n！")
+                    print("Please enter y or n!")
             while True:
                 try:
-                    min_period = int(input("最短租期(天): "))
+                    min_period = int(input("Minimum rental period (days): "))
                     break
                 except ValueError:
-                    print("最短租期必须为整数！")
+                    print("Minimum rental period must be an integer!")
             while True:
                 try:
-                    max_period = int(input("最长租期(天): "))
+                    max_period = int(input("Maximum rental period (days): "))
                     break
                 except ValueError:
-                    print("最长租期必须为整数！")
+                    print("Maximum rental period must be an integer!")
             while True:
                 try:
-                    price_per_day = float(input("日租金: "))
+                    price_per_day = float(input("Price per day: "))
                     break
                 except ValueError:
-                    print("日租金必须为数字！")
+                    print("Price per day must be a number!")
             car = Car(car_id, make, model, year, mileage, available_now, min_period, max_period, price_per_day)
             db = Database()
             db.add_car(car)
@@ -100,28 +102,28 @@ def admin_menu(admin):
         elif choice == "2":
             while True:
                 try:
-                    car_id = int(input("车辆ID: "))
+                    car_id = int(input("Car ID: "))
                     break
                 except ValueError:
-                    print("车辆ID必须为整数！")
-            field = input("要更新的字段(make/model/year/mileage/available_now/min_period/max_period/price_per_day): ")
-            value = input("新值: ")
+                    print("Car ID must be an integer!")
+            field = input("Field to update (make/model/year/mileage/available_now/min_period/max_period/price_per_day): ")
+            value = input("New value: ")
             if field in ["year", "mileage", "min_period", "max_period"]:
                 try:
                     value = int(value)
                 except ValueError:
-                    print("该字段必须为整数！")
+                    print("This field must be an integer!")
                     return
             if field == "available_now":
                 if value.lower() not in ['y', 'n']:
-                    print("请输入y或n！")
+                    print("Please enter y or n!")
                     return
                 value = value.lower() == 'y'
             if field == "price_per_day":
                 try:
                     value = float(value)
                 except ValueError:
-                    print("日租金必须为数字！")
+                    print("Price per day must be a number!")
                     return
             db = Database()
             db.update_car(car_id, **{field: value})
@@ -129,10 +131,10 @@ def admin_menu(admin):
         elif choice == "3":
             while True:
                 try:
-                    car_id = int(input("车辆ID: "))
+                    car_id = int(input("Car ID: "))
                     break
                 except ValueError:
-                    print("车辆ID必须为整数！")
+                    print("Car ID must be an integer!")
             db = Database()
             db.delete_car(car_id)
             print(f"Car {car_id} deleted.")
@@ -142,38 +144,38 @@ def admin_menu(admin):
                 print(f"Rental {r[0]}: {r[2]} by {r[1]} ({r[5]}, {r[6]}) from {r[3]} to {r[4]}, Status: {r[7]}, Fee: {r[8]}")
             while True:
                 try:
-                    rental_id = int(input("要审批的租赁ID: "))
+                    rental_id = int(input("Rental ID to approve/reject: "))
                     break
                 except ValueError:
-                    print("租赁ID必须为整数！")
+                    print("Rental ID must be an integer!")
             while True:
-                yn = input("批准(y)还是拒绝(n): ").lower()
+                yn = input("Approve (y) or reject (n): ").lower()
                 if yn in ['y', 'n']:
                     approve = yn == 'y'
                     break
                 else:
-                    print("请输入y或n！")
+                    print("Please enter y or n!")
             db.update_rental_status(rental_id, "approved" if approve else "rejected")
             print(f"Rental {rental_id} {'approved' if approve else 'rejected'}.")
         elif choice == "5":
             db = Database()
-            print("\n--- 所有车辆 ---")
+            print("\n--- All Cars ---")
             for c in db.get_all_cars():
                 print(f"{c[0]}: {c[1]} {c[2]} ({c[3]}), Mileage: {c[4]}, Price/Day: {c[8]}, Available: {bool(c[5])}")
         elif choice == "6":
-            print("已登出\n")
+            print("Logged out.\n")
             break
         else:
-            print("无效选择")
+            print("Invalid choice")
 
 def customer_menu(customer):
     while True:
-        print("\n==== 客户菜单 ====")
-        print("1. 查看可用车辆")
-        print("2. 预订车辆")
-        print("3. 查看我的租赁")
-        print("4. 登出")
-        choice = input("请选择操作: ")
+        print("\n==== Customer Menu ====")
+        print("1. View Available Cars")
+        print("2. Rent a Car")
+        print("3. View My Rentals")
+        print("4. Log Out")
+        choice = input("Please select an option: ")
         if choice == "1":
             db = Database()
             for c in db.get_all_cars():
@@ -182,46 +184,46 @@ def customer_menu(customer):
         elif choice == "2":
             while True:
                 try:
-                    car_id = int(input("车辆ID: "))
+                    car_id = int(input("Car ID: "))
                     break
                 except ValueError:
-                    print("车辆ID必须为整数！")
+                    print("Car ID must be an integer!")
             while True:
-                name = input("您的姓名: ")
+                name = input("Your Name: ")
                 if len(name.strip()) == 0:
-                    print("姓名不能为空！")
+                    print("Name cannot be empty!")
                 else:
                     break
             while True:
-                phone = input("手机号: ")
+                phone = input("Phone Number: ")
                 if not phone.isdigit() or len(phone) < 7:
-                    print("手机号必须为7位及以上数字！")
+                    print("Phone number must be a 7-digit or longer numeric string!")
                 else:
                     break
             while True:
-                start = input("开始日期(YYYY-MM-DD): ")
+                start = input("Start Date (YYYY-MM-DD): ")
                 try:
                     start_date = datetime.strptime(start, "%Y-%m-%d")
                     break
                 except ValueError:
-                    print("日期格式错误，应为YYYY-MM-DD！")
+                    print("Invalid date format, please use YYYY-MM-DD!")
             while True:
-                end = input("结束日期(YYYY-MM-DD): ")
+                end = input("End Date (YYYY-MM-DD): ")
                 try:
                     end_date = datetime.strptime(end, "%Y-%m-%d")
                     if end_date <= start_date:
-                        print("结束日期必须晚于开始日期！")
+                        print("End date must be later than start date!")
                         continue
                     break
                 except ValueError:
-                    print("日期格式错误，应为YYYY-MM-DD！")
+                    print("Invalid date format, please use YYYY-MM-DD!")
             db = Database()
             car_row = db.get_car(car_id)
             if not car_row or not car_row[5]:
                 print("Car not available.")
                 return
             from car_rental_system.rental import Rental
-            rental_id = None # 由数据库自增
+            rental_id = None 
             rental = Rental(rental_id, customer.username, car_id, start_date, end_date, name, phone)
             db.add_rental(rental)
             print(f"Rental request submitted.")
@@ -230,14 +232,14 @@ def customer_menu(customer):
             for r in db.get_rentals_by_customer(customer.username):
                 print(f"Rental {r[0]}: {r[2]} by {r[1]} ({r[5]}, {r[6]}) from {r[3]} to {r[4]}, Status: {r[7]}, Fee: {r[8]}")
         elif choice == "4":
-            print("已登出\n")
+            print("Logged out.\n")
             break
         else:
-            print("无效选择")
+            print("Invalid choice")
 
 if __name__ == "__main__":
     db = Database()
-    # 预置一个管理员账号
+    # preset admin account
     if not db.get_user("admin1"):
         register("admin1", "adminpass", "admin")
     current_user = None
@@ -245,32 +247,32 @@ if __name__ == "__main__":
         choice = main_menu()
         if choice == "1":
             while True:
-                username = input("用户名: ")
+                username = input("Username: ")
                 if len(username.strip()) == 0:
-                    print("用户名不能为空！")
+                    print("Username cannot be empty!")
                 else:
                     break
             while True:
-                password = input("密码: ")
+                password = input("Password: ")
                 if len(password) < 4:
-                    print("密码长度不能小于4位！")
+                    print("Password must be at least 4 characters long!")
                 else:
                     break
             while True:
-                role = input("角色(admin/customer): ").lower()
+                role = input("Role (admin/customer): ").lower()
                 if role not in ["admin", "customer"]:
-                    print("角色只能是admin或customer！")
+                    print("Role must be either 'admin' or 'customer'!")
                 else:
                     break
             register(username, password, role)
         elif choice == "2":
-            username = input("用户名: ")
-            password = input("密码: ")
+            username = input("Username: ")
+            password = input("Password: ")
             user = login(username, password)
             if user:
                 user_menu(user)
         elif choice == "3":
-            print("再见！")
+            print("Goodbye!")
             break
         else:
-            print("无效选择")
+            print("Invalid choice")

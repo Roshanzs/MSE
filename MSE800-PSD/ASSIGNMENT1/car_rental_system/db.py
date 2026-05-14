@@ -8,13 +8,13 @@ def get_connection():
 def init_db():
     conn = get_connection()
     c = conn.cursor()
-    # 用户表
+    # usersfrom
     c.execute('''CREATE TABLE IF NOT EXISTS users (
         username TEXT PRIMARY KEY,
         password TEXT NOT NULL,
         role TEXT NOT NULL
     )''')
-    # 车辆表
+    # carsfrom
     c.execute('''CREATE TABLE IF NOT EXISTS cars (
         car_id INTEGER PRIMARY KEY,
         make TEXT,
@@ -26,7 +26,7 @@ def init_db():
         max_period INTEGER,
         price_per_day REAL
     )''')
-    # 租赁表
+    # rentalsfrom
     c.execute('''CREATE TABLE IF NOT EXISTS rentals (
         rental_id INTEGER PRIMARY KEY AUTOINCREMENT,
         customer TEXT,

@@ -12,4 +12,4 @@ class Car:
         self.price_per_day = price_per_day
 
     def __str__(self):
-        return f"{self.car_id}: {self.make} {self.model} ({self.year}), Mileage: {self.mileage}, Price/Day: {self.price_per_day}, Available: {self.available_now}"
+        return f"carID: {self.car_id}, carBrand: {self.make}, carModel: {self.model}, carYear: {self.year}, Mileage: {self.mileage}, Price/Day: {self.price_per_day}, Available: {self.available_now}"
