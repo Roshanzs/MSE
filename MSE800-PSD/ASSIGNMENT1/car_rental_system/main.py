@@ -1,9 +1,9 @@
 
 
 from datetime import datetime, timedelta
-from car_rental_system.user_factory import UserFactory
-from car_rental_system.car import Car
-from car_rental_system.database import Database
+from user_factory import UserFactory
+from car import Car
+from database import Database
 
 def register(username, password, role):
     db = Database()

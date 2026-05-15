@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .database import Database
+from database import Database
 
 class User(ABC):
     def __init__(self, username, password):

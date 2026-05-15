@@ -1,5 +1,5 @@
 
-from .db import get_connection, init_db
+from db import get_connection, init_db
 
 class Database:
     _instance = None

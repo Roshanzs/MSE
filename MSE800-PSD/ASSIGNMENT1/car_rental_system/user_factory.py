@@ -1,4 +1,4 @@
-from .user import Admin, Customer
+from user import Admin, Customer
 
 class UserFactory:
     @staticmethod

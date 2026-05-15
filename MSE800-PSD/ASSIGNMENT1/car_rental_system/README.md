@@ -13,12 +13,11 @@ car_rental_system/
 ├── rental.py        # Rental class definition
 ├── user.py          # User, Admin, Customer class definitions
 ├── user_factory.py  # User factory class, creates users by role
-├── README.md        # Documentation (Chinese)
 └── car_rental.db    # SQLite database file (auto-generated after running)
 ```
 
 ## Requirements
-- Python 3.7 or above (Python 3.10+ recommended)
+- Python 3.12 or above (Python 3.12+ recommended)
 - No third-party libraries required, uses standard library sqlite3
 
 ## Installation & Setup
@@ -33,11 +32,8 @@ car_rental_system/
    - Open a terminal and go to the parent directory of car_rental_system (e.g., ASSIGNMENT1):
      ```bash
      cd ASSIGNMENT1
-     python -m car_rental_system.main
-     ```
-   - If you get a module not found error, make sure there is an __init__.py file in car_rental_system (can be empty), or run directly:
-     ```bash
-     python car_rental_system/main.py
+     cd car_rental_system
+     python main.py
      ```
 
 ## Usage Guide
