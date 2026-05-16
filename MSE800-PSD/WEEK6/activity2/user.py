@@ -17,8 +17,8 @@ class User:
         self.logged_in = False
 
 def userLogin(username, password):
-    user = User(username, password)
-    if user.password == password:
+    if defultUsername == username and defultPassword == password:
+        user = User(username, password)
         user.logged_in = True
         print(f"{username} has logged in.")
         return user

@@ -11,7 +11,8 @@ def main():
         username = input("Enter username: ")
         password = input("Enter password: ")
         user = userLogin(username, password)
-        break
+        if user:
+            break
 
     Zoo1 = zoo.Zoo("City Zoo", user)
 
