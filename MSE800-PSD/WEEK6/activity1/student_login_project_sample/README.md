@@ -1,0 +1,1 @@
+a decorator can help developer to do the same code in a common method, just need to put @ add method name on the method when we use it, it will implement with the real method.

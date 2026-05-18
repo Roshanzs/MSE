@@ -6,7 +6,6 @@ def log_activity(func):
     def wrapper(*args, **kwargs):
         print(f"Function: {func.__name__}")
         result = func(*args, **kwargs)
-        #检测用户登录状态
         if args:
             zoo = args[0]
             if zoo.user.logged_in:
