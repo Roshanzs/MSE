@@ -54,6 +54,6 @@ class Cat(Animals):
 # client
 factory = DogFactory()
 dog = Dog()
-dog = factory.create_product()
+# dog = factory.create_product()
 
 dog.run()
