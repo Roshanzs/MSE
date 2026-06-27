@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BMI Calculator</title>
+	<style>
+		body {
+			font-family: Georgia, 'Times New Roman', Times, serif;
+			margin: 20px;
+		}
+
+		h1, h2 {
+			margin-bottom: 16px;
+		}
+
+		form {
+			max-width: 520px;
+		}
+
+		label {
+			display: inline-block;
+			width: 180px;
+			margin-bottom: 10px;
+		}
+
+		input {
+			width: 280px;
+			padding: 4px;
+		}
+
+		button, a {
+			font-size: 1rem;
+		}
+
+		hr {
+			margin: 28px 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>BMI Calculator</h1>
+
+	<form method="post">
+		<label for="weight">Weight in kilograms:</label>
+		<input id="weight" name="weight" type="number" step="0.01" min="0" value="{{ weight }}" required>
+		<br>
+		<label for="height">Height in meters:</label>
+		<input id="height" name="height" type="number" step="0.01" min="0" value="{{ height }}" required>
+		<br>
+		<button type="submit">Calculate BMI</button>
+	</form>
+
+	{% if error %}
+	<p>{{ error }}</p>
+	{% endif %}
+
+	{% if bmi is not none %}
+	<hr>
+	<h1>BMI Calculator Result</h1>
+	<p>Your BMI is: {{ '%.2f'|format(bmi) }}</p>
+	<p>You are classified as: {{ category }}</p>
+	<p><a href="/">Calculate Again</a></p>
+	{% endif %}
+</body>
+</html>
