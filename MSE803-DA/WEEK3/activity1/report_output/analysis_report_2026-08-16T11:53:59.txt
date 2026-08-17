@@ -1,0 +1,43 @@
+Analysis report
+Generated: 2026-08-16T11:53:59
+
+Dataset shape: 10 rows, 7 columns
+
+Numeric summaries:
+           count  missing_count  missing_pct          mean   median           std      min       q1        q3      max
+ID             9              1         10.0      5.333333      5.0      3.316625      1.0      2.0      8.00     10.0
+Age            8              2         20.0     30.750000     29.5      6.363961     22.0     26.5     35.75     40.0
+Net worth      7              3         30.0  38571.428571  35000.0  14164.005352  22000.0  29000.0  47500.00  60000.0
+Salary         8              2         20.0  62625.000000  62000.0   5655.275666  55000.0  58750.0  65750.00  72000.0
+
+Metric explanations:
+- count: Number of non-missing observations in the column. This tells you how many valid values are available for analysis.
+- missing_count: Number of missing values. A large value suggests data quality issues or incomplete records.
+- missing_pct: Percentage of rows with missing values. It shows how severe the gap is relative to the whole dataset.
+- mean: Arithmetic average. It represents the centre of the data but can be skewed by extreme values.
+- median: Median or middle value. It is more robust than the mean when outliers exist.
+- std: Standard deviation. It measures how spread out the values are around the mean.
+- min: Smallest recorded value. It helps define the lower bound of the observed data.
+- q1: 25th percentile. One quarter of the values fall below this point.
+- q3: 75th percentile. Three quarters of the values fall below this point.
+- max: Largest recorded value. It helps define the upper bound of the observed data.
+
+Categorical summaries:
+           unique                                                 top_values  missing_count
+column                                                                                     
+Name            9                            Bob (2); Alice (1); Charlie (1)              1
+Country         4                                    NZ (6); AUS (2); AU (1)              1
+Join Date       7  2020-02-20 00:00:00 (2); NaT (2); 2021-07-25 00:00:00 (2)              2
+
+Categorical metric explanations:
+- unique: Number of distinct categories in a non-numeric column. It helps show variety in the data.
+- top_values: Most frequent categories and their counts. It reveals the dominant patterns in a categorical variable.
+
+Correlations (Pearson):
+                 ID       Age  Net worth    Salary
+ID         1.000000 -0.045023   0.618678  0.119153
+Age       -0.045023  1.000000   0.484272  0.631123
+Net worth  0.618678  0.484272   1.000000  0.139688
+Salary     0.119153  0.631123   0.139688  1.000000
+
+Correlation explanation: Pearson correlation coefficient: from -1 to +1. Values near +1 indicate strong positive association, near -1 strong negative association, and near 0 weak or no linear relationship.

@@ -1,0 +1,4 @@
+column,unique,top_values,missing_count
+Name,9,Bob (2); Alice (1); Charlie (1),1
+Country,4,NZ (6); AUS (2); AU (1),1
+Join Date,7,2020-02-20 00:00:00 (2); NaT (2); 2021-07-25 00:00:00 (2),2
